@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Portfolio Logan Milleron — Miller design</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#101012;font-family:'DM Sans',system-ui,sans-serif}
+.g{columns:3 300px;column-gap:24px}
+.card{break-inside:avoid;margin:0 0 24px;position:relative;display:block;width:100%;padding:0;border:0;background:#1c1c20;border-radius:20px;overflow:hidden;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:0 18px 0 #FF5A14}
+.card img{display:block;width:100%;transition:transform .6s}
+.card:hover img{transform:scale(1.06)}
+.tag{position:absolute;left:14px;top:14px;padding:6px 12px;border-radius:99px;font:700 13px 'DM Sans',sans-serif;color:#101012}
+.chip{min-height:48px;padding:0 24px;border-radius:99px;border:2px solid #FFF4E8;background:transparent;color:#FFF4E8;font:700 16px 'DM Sans',sans-serif;cursor:pointer;transition:all .25s}
+.chip:hover{transform:scale(1.06)}
+.nav a{color:#FFF4E8;text-decoration:none;font-weight:700}
+.nav a:hover{color:#FFD60A}
+.mq{display:flex;gap:48px;white-space:nowrap;animation:mq 22s linear infinite;width:max-content}
+@keyframes mq{to{transform:translateX(-50%)}}
+</style>
+</helmet>
+<div style="background:#101012;color:#FFF4E8;overflow-x:clip">
+
+<div class="nav" style="position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:16px 48px;background:#101012ee">
+<img src="./assets/f097376ecb6a6cbaaadf470351326f94.png" alt="Miller design" style="height:44px">
+<div style="display:flex;gap:32px"><a href="#travaux">Work</a><a href="#contact">Contact</a></div>
+</div>
+
+<section style="position:relative;padding:72px 48px 0;min-height:620px">
+<div style="position:absolute;right:{{heroR}};top:40px;width:420px;height:420px;border-radius:50%;background:#FFD60A;transform:translateY({{heroY}}px)"></div>
+<div style="position:absolute;right:360px;top:260px;width:200px;height:200px;border-radius:50%;background:#2B5BFF;transform:translateY({{heroY2}}px)"></div>
+<p style="position:relative;margin:0 0 16px;font-weight:700;font-size:20px;color:#FF5A14">Logan Milleron · Miller design</p>
+<h1 style="position:relative;margin:0;font:400 clamp(72px,13vw,200px)/0.9 Anton,sans-serif;text-transform:uppercase;transform:translateY({{heroY2}}px)">Graphic<br>designer<br><span style="color:#FF5A14">who makes</span><br>noise.</h1>
+<p style="position:relative;max-width:520px;margin:32px 0 0;font-size:20px;line-height:1.5">Web, print, layout. Here is my work, to browse by scrolling all the way down.</p>
+</section>
+
+<div style="overflow:hidden;background:#FF5A14;color:#101012;padding:20px 0;margin-top:64px;transform:rotate(-1.5deg)">
+<div class="mq" style="font:400 56px/1 Anton,sans-serif;text-transform:uppercase"><span>Web ✦ Print ✦ Layout ✦ Identity ✦ </span><span>Web ✦ Print ✦ Layout ✦ Identity ✦ </span><span>Web ✦ Print ✦ Layout ✦ Identity ✦ </span><span>Web ✦ Print ✦ Layout ✦ Identity ✦ </span></div>
+</div>
+
+<section id="travaux" style="padding:96px 48px 48px">
+<h2 style="margin:0 0 32px;font:400 clamp(48px,7vw,104px)/1 Anton,sans-serif;text-transform:uppercase">My <span style="color:#FFD60A">work</span></h2>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+<button class="chip" onClick="{{ c.pick }}" style="{{ c.style }}">{{c.label}}</button>
+</sc-for>
+</div>
+<div class="g">
+<sc-for list="{{items}}" as="it" hint-placeholder-count="6">
+<button class="card" onClick="{{ it.open }}" aria-label="{{it.title}}">
+<img src="{{it.src}}" alt="{{it.title}}">
+<span class="tag" style="background:{{it.color}}">{{it.catLabel}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<sc-if value="{{hasOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;z-index:50;background:#101012f2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px">
+<img src="{{openSrc}}" alt="{{openTitle}}" style="max-width:100%;max-height:78vh;border-radius:16px">
+<p style="margin:0;font:700 22px 'DM Sans',sans-serif">{{openTitle}}</p>
+<button class="chip" onClick="{{ close }}" style="background:#FF5A14;border-color:#FF5A14;color:#101012">Close</button>
+</div>
+</sc-if>
+
+<section id="fin" style="height:300vh;position:relative">
+<div style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:{{endBg}}">
+<img src="./assets/f097376ecb6a6cbaaadf470351326f94.png" alt="Miller design" style="width:min(86vw,1100px);transform:scale({{logoScale}}) rotate({{logoRot}}deg);opacity:{{logoOp}}">
+<div id="contact" style="position:absolute;bottom:48px;left:0;right:0;text-align:center;opacity:{{ctaOp}}">
+<p style="margin:0;font:400 clamp(28px,4vw,56px)/1.1 Anton,sans-serif;text-transform:uppercase;color:#FFF4E8">Shall we work together?</p>
+<p style="margin:8px 0 0;font-size:20px;color:#FFD60A">[YOUR EMAIL] · [YOUR PHONE]</p>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  constructor(p){super(p);this.state={filter:'all',open:null,p:0,y:0};this._t=false;}
+  componentDidMount(){
+    this._on=()=>{ if(this._t)return; this._t=true; requestAnimationFrame(()=>{ this._t=false;
+      const e=document.getElementById('fin'); if(!e)return;
+      const r=e.getBoundingClientRect(); const span=Math.max(1,r.height-window.innerHeight);
+      this.setState({p:Math.min(1,Math.max(0,-r.top/span)),y:window.scrollY||0}); }); };
+    window.addEventListener('scroll',this._on,{passive:true}); this._on();
+  }
+  componentWillUnmount(){window.removeEventListener('scroll',this._on);}
+  renderVals(){
+    const B='/_blob/';
+    const cats={web:['Web','#FFD60A'],print:['Impression','#FF5A14'],layout:['Mise en page','#4DD9FF']};
+    const all=[
+      ['web','Bannières web Air Jordan','a92e435cb4aed2f0a137ae359b657838'],
+      ['web','Bannières Spotify','84114aa2f55d23779772911281d1299f'],
+      ['web','Publication Instagram Air Jordan','1ddfeb07ffc159bdf27209a27bb46963'],
+      ['web','Pub YouTube Coca-Cola','2cd1552bd67e48ce947287b4265d1a0e'],
+      ['web','Site Kalash 972','03d4848be3be6f9c899791f5f14d71e5'],
+      ['print','Identité Miller design','afa0f3c9c99ae75bd14f9eb11bb78cd2'],
+      ['print','Cartes d’affaires','cbdd2eebba782dc746f918965828c4b6'],
+      ['print','Affiches Aurora','137a747416a2d896aa04f9817ceba022'],
+      ['print','Affiche Bronco','43cdd30dc65492cb06939634a056e21b'],
+      ['print','Affiche Spotify','507354eb75c947266993b226a43eff3b'],
+      ['print','Panneau publicitaire','65fb657f7103eae462e4c943e722ee0b'],
+      ['print','Gobelet Miller design','4e2fa4be38d57d6c03c0b3bd2f4210b4'],
+      ['print','Affiche Mango','fc221dc7054bc6f17729f5ad4f52b41b'],
+      ['layout','Journal – page 1','421941195d81ec3766dbae81939273e2'],
+      ['layout','Journal – page 2','090958782b87ce5da77f75fd6eacf506'],
+      ['layout','Catalogue Lexus','931318c9d21d78d4466365563d510e11'],
+      ['layout','Couverture Hitchcock','c9d7bca6b9d017409ee52d04d3418bee'],
+      ['layout','Présentation sur tablette','fc0c2a0d6a0547accb4ac8bfb63d4c7a']
+    ].map((a,i)=>({id:i,cat:a[0],title:a[1],src:B+a[2],catLabel:cats[a[0]][0],color:cats[a[0]][1],open:()=>this.setState({open:i})}));
+    const f=this.state.filter;
+    const items=all.filter(x=>f==='all'||x.cat===f);
+    const defs=[['all','Tout','#FFF4E8'],['web','Web','#FFD60A'],['print','Impression','#FF5A14'],['layout','Mise en page','#4DD9FF']];
+    const chips=defs.map(d=>({label:d[1],pick:()=>this.setState({filter:d[0]}),style:f===d[0]?'background:'+d[2]+';border-color:'+d[2]+';color:#101012':''}));
+    const o=this.state.open!==null?all[this.state.open]:null;
+    const p=this.state.p, y=this.state.y;
+    const ease=Math.min(1,p/0.75);
+    const e2=1-Math.pow(1-ease,3);
+    const mix=(a,b,t)=>Math.round(a+(b-a)*t);
+    const t=Math.min(1,p/0.9);
+    return {
+      chips,items,hasOpen:!!o,openSrc:o?o.src:'',openTitle:o?o.title:'',
+      close:()=>this.setState({open:null}),
+      heroY:Math.round(y*0.25),heroY2:Math.round(y*0.12),heroR:'48px',
+      logoScale:(0.06+0.94*e2).toFixed(3),logoRot:Math.round(-40*(1-e2)),logoOp:Math.min(1,0.2+p*3).toFixed(2),
+      ctaOp:p>0.8?Math.min(1,(p-0.8)/0.15).toFixed(2):'0',
+      endBg:'rgb('+mix(16,27,t)+','+mix(16,40,t)+','+mix(18,232,t)+')'
+    };
+  }
+}
+</script>
+</body>
+</html>
